@@ -1,6 +1,9 @@
 import React from 'react';
 import moment from 'moment';
+import Image from 'next/image';
 import Link from 'next/link';
+
+import { graphCMSImageLoader } from '../util';
 
 const PostCard = ({ post }) => {
   return (
@@ -9,7 +12,7 @@ const PostCard = ({ post }) => {
         <img
           src={post.featuredImage.url}
           alt={post.title}
-          className='absolute h-80 w-full rounded-t-lg  object-cover shadow-lg lg:rounded-lg'
+          className='absolute h-80 w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg'
         />
       </div>
       <h1 className='mb-8 cursor-pointer text-center text-3xl font-semibold transition duration-700 hover:text-red-600'>
@@ -17,9 +20,13 @@ const PostCard = ({ post }) => {
       </h1>
       <div className='mb-8 block w-full items-center justify-center text-center lg:flex'>
         <div className='mr-8 mb-4 flex w-full items-center justify-center lg:mb-0 lg:w-auto'>
-          <img
+          <Image
             alt={post.author.name}
-            className='inline h-8 w-8 rounded-full object-cover object-cover align-middle'
+            loader={graphCMSImageLoader}
+            unoptimized
+            height='30px'
+            width='30px'
+            className='rounded-full object-cover object-top align-middle'
             src={post.author.photo.url}
           />
           <p className='ml-2 inline align-middle text-lg text-gray-700'>
